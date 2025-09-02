@@ -1,16 +1,16 @@
 public class Aresta {
-    String noDeDestino;
+    String noDestino;
     int custo;
 
-    public Aresta(String noDeDestino, int custo) {
-        this.noDeDestino = noDeDestino;
+    public Aresta(String noDestino, int custo) {
+        this.noDestino = noDestino;
         this.custo = custo;
     }
 
     @Override
     public String toString() {
         return "Aresta{" +
-                "destino='" + noDeDestino + '\'' +
+                "destino='" + noDestino + '\'' +
                 ", custo=" + custo +
                 '}';
     }
