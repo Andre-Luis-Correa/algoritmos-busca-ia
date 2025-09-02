@@ -5,9 +5,11 @@ import java.util.StringJoiner;
 
 public class Main {
 
+    private static final String caminhoArquivoTexto = "C:/Users/andre/IdeaProjects/ProcessamentoMamografias/labirinto-ia/src/labirinto.txt";
+
     public static void main(String[] args) {
         Grafo labirinto = new Grafo();
-        labirinto.carregarDeArquivo("C:/Users/andre/IdeaProjects/ProcessamentoMamografias/labirinto-ia/src/labirinto.txt");
+        labirinto.carregarDeArquivo(caminhoArquivoTexto);
 
         Scanner leitorDeEntrada = new Scanner(System.in);
         System.out.println("Bem-vindo ao Labirinto do Minotauro!");
