@@ -1,16 +1,9 @@
 import java.util.*;
 
-/**
- * A classe Algoritmos fornece implementações estáticas de algoritmos de busca em grafos,
- * como A* (A-Estrela) e Busca em Profundidade (DFS).
- */
 public class Algoritmos {
 
-    // --- Constantes ---
     private static final String TIPO_FRONTEIRA_PILHA = "Pilha";
     private static final String TIPO_FRONTEIRA_FILA_PRIORIDADE = "Fila de Prioridade";
-
-    // --- Métodos Públicos de Busca ---
 
     // Objetivo do método: Encontrar o caminho de menor custo em um grafo usando o algoritmo A*, com um limite de custo opcional.
     // Pré-condições: O grafo deve ser válido e inicializado, contendo um nó inicial e final.
