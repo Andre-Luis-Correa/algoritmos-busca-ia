@@ -59,11 +59,11 @@ public class Grafo {
                     continue;
                 }
 
-                if (tentarAnalisar(linha, "ponto_inicial\\((\\w+)\\)\\.", m -> noInicial = m.group(1))) continue;
-                if (tentarAnalisar(linha, "ponto_final\\((\\w+)\\)\\.", m -> noFinal = m.group(1))) continue;
-                if (tentarAnalisar(linha, "orientado\\((s|n)\\)\\.", m -> ehOrientado = m.group(1).equals("s"))) continue;
-                if (tentarAnalisar(linha, "pode_ir\\((\\w+),(\\w+),(\\d+)\\)\\.", m -> adicionarAresta(m.group(1), m.group(2), Integer.parseInt(m.group(3))))) continue;
-                if (tentarAnalisar(linha, "h\\((\\w+),(\\w+),(\\d+)\\)\\.", m -> heuristicas.put(m.group(1), Integer.parseInt(m.group(3))))) continue;
+                if (tentarAnalisar(linha, "ponto_inicial\\((\\w+)\\) \\.", m -> noInicial = m.group(1))) continue;
+                if (tentarAnalisar(linha, "ponto_final\\((\\w+)\\) \\.", m -> noFinal = m.group(1))) continue;
+                if (tentarAnalisar(linha, "orientado\\((s|n)\\) \\.", m -> ehOrientado = m.group(1).equals("s"))) continue;
+                if (tentarAnalisar(linha, "pode_ir\\((\\w+),(\\w+),(\\d+)\\) \\.", m -> adicionarAresta(m.group(1), m.group(2), Integer.parseInt(m.group(3))))) continue;
+                if (tentarAnalisar(linha, "h\\((\\w+),(\\w+),(\\d+)\\) \\.", m -> heuristicas.put(m.group(1), Integer.parseInt(m.group(3))))) continue;
             }
         } catch (FileNotFoundException e) {
             System.err.println("Erro: Arquivo não encontrado: " + nomeDoArquivo);

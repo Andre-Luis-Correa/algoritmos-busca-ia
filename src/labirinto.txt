@@ -1,53 +1,63 @@
-# Ponto inicial da busca
-ponto_inicial(a0).
-# Ponto final da busca
-ponto_final(f0).
-# Indica grafo nao orientado
-orientado(s).
+# CONFIGURACOES GERAIS DO LABIRINTO
+ponto_inicial(a0) .
+ponto_final(f0) .
+orientado(s) .
 
-# --- CAMINHO OTIMO (Custo Total: 45) ---
-# Este eh o caminho mais curto, mas o A* precisa explorar um pouco para ter certeza.
-pode_ir(a0,c0,20).
-pode_ir(c0,i1,15).
-pode_ir(i1,f0,10).
+# A ARMADILHA GIGANTE PARA A BUSCA EM PROFUNDIDADE (DFS)
+# Este é o primeiro caminho que o DFS vai seguir por ser o primeiro
+# na lista de adjacências de 'a0'. É um caminho muito longo e caro.
+# Custo Total: 1001
+pode_ir(a0,g0,1) .
+pode_ir(g0,g1,100) .
+pode_ir(g1,g2,100) .
+pode_ir(g2,g3,100) .
+pode_ir(g3,g4,100) .
+pode_ir(g4,g5,100) .
+pode_ir(g5,g6,100) .
+pode_ir(g6,g7,100) .
+pode_ir(g7,g8,100) .
+pode_ir(g8,g9,100) .
+pode_ir(g9,f0,100) .
 
-# --- CAMINHO ORIGINAL (Agora nao eh mais o melhor) ---
-pode_ir(a0,e0,49).
-pode_ir(e0,f0,5). # Custo 54
+# O CAMINHO ÓTIMO PARA O A*
+# Este é o caminho mais curto. O A* o encontrará rapidamente
+# Custo Total: 20
+pode_ir(a0,z0,10) .
+pode_ir(z0,f0,10) .
 
-# --- CAMINHOS LONGOS E INTERMEDIARIOS ---
-pode_ir(a0,b0,95).
-pode_ir(b0,f0,130). # Custo 225
-pode_ir(b0,c0,60).
+# CAMINHOS DE DISTRAÇÃO
+# Outros caminhos que são piores que o ótimo, mas melhores que a
+# armadilha, para garantir que o A* realmente escolha o melhor.
+# Custo Total: 65
+pode_ir(a0,m0,30) .
+pode_ir(m0,f0,35) .
 
-# --- A ARMADILHA PARA A BUSCA EM PROFUNDIDADE ---
-# Um caminho muito longo que a busca em profundidade provavelmente vai seguir.
-pode_ir(a0,d0,35).
-pode_ir(d0,g1,40).
-pode_ir(g1,g2,50).
-pode_ir(g2,g3,55).
-pode_ir(g3,g4,60).
-pode_ir(g4,f0,30). # Custo total por este caminho: 270
+# ===================================================================
+# ==  VALORES HEURISTICOS (h)                                    ==
+# ===================================================================
+# Heurísticas bem ajustadas são a chave para a eficiência do A*.
+# Note como a heurística para a armadilha (g0) é altíssima.
 
-# --- Conexoes adicionais para complexidade ---
-pode_ir(d0,c0,32).
-pode_ir(d0,e0,28).
-pode_ir(c0,h1,25).
-pode_ir(h1,f0,80). # Atalho enganoso, custo total 125
+# Heurística para o ponto inicial
+h(a0,f0,20) .
 
-# --- Valores heuristicos (distancia estimada ate f0) ---
-# Heuristicas para nos originais (ajustadas)
-h(a0,f0,40).
-h(b0,f0,120).
-h(c0,f0,25).
-h(d0,f0,100).
-h(e0,f0,5).
+# Heurísticas para o CAMINHO ÓTIMO (muito precisas)
+h(z0,f0,10) .
+
+# Heurísticas para o CAMINHO DE DISTRAÇÃO
+h(m0,f0,35) .
+
+# Heurísticas para a ARMADILHA GIGANTE (altas para o A* evitar)
+h(g0,f0,1000).
+h(g1,f0,900).
+h(g2,f0,800).
+h(g3,f0,700).
+h(g4,f0,600).
+h(g5,f0,500).
+h(g6,f0,400).
+h(g7,f0,300).
+h(g8,f0,200).
+h(g9,f0,100).
+
+# Heurística para o ponto final
 h(f0,f0,0).
-
-# Heuristicas para os novos nos
-h(i1,f0,10).   # Nó do caminho ótimo
-h(h1,f0,75).   # Nó do atalho enganoso
-h(g1,f0,180).  # Nós da armadilha
-h(g2,f0,135).
-h(g3,f0,85).
-h(g4,f0,30).

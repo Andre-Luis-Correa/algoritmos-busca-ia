@@ -62,7 +62,9 @@ public class Algoritmos {
                 }
             }
         }
-        return null; // Nenhuma solução encontrada
+
+        // Nenhuma solução encontrada
+        return null;
     }
 
     // Objetivo do método: Encontrar um caminho entre o nó inicial e final de um grafo usando a estratégia de Busca em Profundidade (DFS).
@@ -84,7 +86,6 @@ public class Algoritmos {
 
             No noAtual = fronteira.pop();
 
-            // Evita reprocessar nós em grafos com ciclos
             if (explorados.contains(noAtual.id)) {
                 continue;
             }
