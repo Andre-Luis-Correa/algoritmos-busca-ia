@@ -48,12 +48,12 @@ public class Algoritmos {
             for (Aresta aresta : vizinhos) {
                 double novoCustoG = noAtual.custoG + aresta.custo;
 
-                // Pula este vizinho se o caminho exceder o limite de fio.
+                // Pula este vizinho se o caminho exceder o limite de fio
                 if (comprimentoMaximoDoFio != null && novoCustoG > comprimentoMaximoDoFio) {
                     continue;
                 }
 
-                // Se um caminho melhor para o vizinho for encontrado.
+                // Se um caminho melhor para o vizinho for encontrado
                 if (novoCustoG < custoGConhecido.getOrDefault(aresta.noDestino, Double.POSITIVE_INFINITY)) {
                     custoGConhecido.put(aresta.noDestino, novoCustoG);
                     double heuristicaVizinho = heuristicas.getOrDefault(aresta.noDestino, 0);
@@ -68,7 +68,7 @@ public class Algoritmos {
     }
 
     // Objetivo do método: Encontrar um caminho entre o nó inicial e final de um grafo usando a estratégia de Busca em Profundidade (DFS).
-    // Pré-condições: O grafo deve ser válido e inicializado, contendo um nó inicial e final.
+    // Pré-condições: O grafo deve ser válido e inicializado, contendo um nó inicial e final
     // Pós-condições: Retorna um Map com os detalhes do primeiro caminho encontrado (caminho, custo, nós expandidos), ou null se nenhum caminho existir.
     public static Map<String, Object> buscaEmProfundidade(Grafo grafo) {
         Stack<No> fronteira = new Stack<>();
